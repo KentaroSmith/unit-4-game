@@ -1,0 +1,37 @@
+body{
+    background-image: url("../images/pipboy.png");
+    background-size: auto;
+    /*I'd like to make it so that you get the full view of the pipboy without scrolling*/
+    /*height: 728px;*/
+}
+#frame{
+    height: 700px;
+    width: 800px;
+    margin-left: 375px;
+    margin-top:25px;
+
+    font-family: 'Share Tech Mono', monospace;
+    color: #3CBC83;
+}
+h1{
+    font-size: 50px;
+}
+h2{
+    font-size: 35px;
+    
+}
+.faction{
+    text-align: center;
+    float: left;
+    margin-left: 25px;
+    
+}
+img{
+    height:100px;
+    width:auto;
+}
+hr{
+
+    border-top: 5px dashed #3CBC83;
+    clear: both;
+}
