@@ -26,6 +26,11 @@ h2{
     margin-left: 25px;
     
 }
+/*set hover animation*/
+.faction:hover{
+    background-color: #3CBC83;
+    color:#0C2F0E;
+}
 img{
     height:100px;
     width:auto;
