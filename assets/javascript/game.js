@@ -8,30 +8,34 @@ var $Legion = $("#Legion");
 var NCR = {
     HP: 120,
     attack: 6,
-    counter_attack: 20,
+    base_attack: 6,
+    counter_attack: 15,
     name: "New California Republic",
-    div: $NCR
+    div: $("#NCR")
 }
 var BoS = {
-    HP: 120,
-    attack: 6,
-    counter_attack: 20,
+    HP: 100,
+    attack: 8,
+    base_attack: 8,
+    counter_attack: 10,
     name: "Brotherhood of Steel",
-    div: $BoS
+    div: $("#BoS")
 }
 var Khans = {
-    HP: 120,
-    attack: 6,
+    HP: 150,
+    attack: 4,
+    base_attack: 4,
     counter_attack: 20,
     name: "The Great Khans",
-    div: $Khans
+    div: $("#Khans")
 }
 var Legion = {
-    HP: 120,
-    attack: 6,
-    counter_attack: 20,
+    HP: 180,
+    attack: 2,
+    base_attack: 2,
+    counter_attack: 25,
     name: "Caesar's Legion",
-    div: $Legion
+    div: $("#Legion")
 }
 
 //When the player clicks on the faction, I want to store that faction as "player"
@@ -41,12 +45,15 @@ var defender = {};
 var enemies = [];
 var gamestarted = false;
 //The game starts on click, when the player chooses a faction
-function choosefaction() {//looks like it only selects NCR at the moment, need to allow for other factions to be chosen.
+function choosefaction() {
     $NCR.on("click", function () {
         player = NCR;
         enemies = [BoS, Khans, Legion];
         console.log(player.name);
         console.log(enemies);
+        $("#gamemaster").text("Pick a faction to go to war with");
+        gamestarted = true;
+        startcombat();
     })
 
     $BoS.on("click", function () {
@@ -54,37 +61,53 @@ function choosefaction() {//looks like it only selects NCR at the moment, need t
         enemies = [NCR, Khans, Legion];
         console.log(player.name);
         console.log(enemies);
+        $("#gamemaster").text("Pick a faction to go to war with");
+        gamestarted = true;
+        startcombat();
     })
     $Khans.on("click", function () {
         player = Khans;
         enemies = [NCR, BoS, Legion];
         console.log(player.name);
         console.log(enemies);
+        $("#gamemaster").text("Pick a faction to go to war with");
+        gamestarted = true;
+        startcombat();
     })
     $Legion.on("click", function () {
         player = Legion;
         enemies = [NCR, BoS, Khans];
         console.log(player.name);
         console.log(enemies);
+        $("#gamemaster").text("Pick a faction to go to war with");
+        gamestarted = true;
+        startcombat();
     })
 }
 
 $("#gamemaster").text("Select your faction to begin!")
-function startgame() {
-    $("#gamemaster").text("Pick a faction to go to war with");
+choosefaction();
+//if (gamestarted) {
+//    startcombat();
+//};
 
-
-};
 //After choosing your faction, we need to set all other factions as enemies
 //maybe add that as an attribute, then set different style rules for said enemies?
-$(function () {
+var startcombat = function () {
+    console.log("Combat started");
+    player.div.detach().appendTo("#player");
+    for (var i = 0; i < enemies.length; i++) {
+        enemies[i].div.detach().appendTo("#enemies");
+        enemies[i].div.on("click", function () {
+            //This is where I need to be able to move enemies to the defender zone - might take some work to turn off the first listener
+        })
+    };
 
-    choosefaction();
-    $("#stage").on("click", function () {
-
-        if (!gamestarted) {
-            startgame();
-
-        }
-    })
-})
+};
+//I need a better way to track damage.
+//var attack = function () {
+//    player.HP - defender.counter_attack;
+//    defender.HP - player.attack;
+//    player.attack + base_attack;
+//};
+//$("#attack").click(attack());

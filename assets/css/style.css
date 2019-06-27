@@ -40,3 +40,12 @@ hr{
     border-top: 5px dashed #3CBC83;
     clear: both;
 }
+#enemies{
+    clear: both;
+}
+#player{
+    clear: both;
+}
+#defender{
+    clear: both;
+}
