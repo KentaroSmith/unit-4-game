@@ -45,15 +45,18 @@ var defender = {};
 var enemies = [];
 var gamestarted = false;
 //The game starts on click, when the player chooses a faction
-function choosefaction() {
+$("#gamemaster").text("Select your faction to begin!")
+var choosefaction = function () {
+    //if (gamestarted = false) {
     $NCR.on("click", function () {
+
         player = NCR;
         enemies = [BoS, Khans, Legion];
         console.log(player.name);
         console.log(enemies);
         $("#gamemaster").text("Pick a faction to go to war with");
         gamestarted = true;
-        startcombat();
+
     })
 
     $BoS.on("click", function () {
@@ -63,7 +66,7 @@ function choosefaction() {
         console.log(enemies);
         $("#gamemaster").text("Pick a faction to go to war with");
         gamestarted = true;
-        startcombat();
+
     })
     $Khans.on("click", function () {
         player = Khans;
@@ -72,7 +75,7 @@ function choosefaction() {
         console.log(enemies);
         $("#gamemaster").text("Pick a faction to go to war with");
         gamestarted = true;
-        startcombat();
+
     })
     $Legion.on("click", function () {
         player = Legion;
@@ -81,29 +84,21 @@ function choosefaction() {
         console.log(enemies);
         $("#gamemaster").text("Pick a faction to go to war with");
         gamestarted = true;
-        startcombat();
+
     })
 }
-
-$("#gamemaster").text("Select your faction to begin!")
-choosefaction();
-//if (gamestarted) {
-//    startcombat();
-//};
+//else {
+player.div.detach().appendTo("#player");
+for (var i = 0; i < enemies.length; i++) {
+    enemies[i].div.detach().appendTo("#enemies");
+}
+//}
+//}
 
 //After choosing your faction, we need to set all other factions as enemies
 //maybe add that as an attribute, then set different style rules for said enemies?
-var startcombat = function () {
-    console.log("Combat started");
-    player.div.detach().appendTo("#player");
-    for (var i = 0; i < enemies.length; i++) {
-        enemies[i].div.detach().appendTo("#enemies");
-        enemies[i].div.on("click", function () {
-            //This is where I need to be able to move enemies to the defender zone - might take some work to turn off the first listener
-        })
-    };
+choosefaction();
 
-};
 //I need a better way to track damage.
 //var attack = function () {
 //    player.HP - defender.counter_attack;
