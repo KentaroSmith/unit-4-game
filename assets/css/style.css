@@ -14,10 +14,10 @@ body{
     color: #3CBC83;
 }
 h1{
-    font-size: 50px;
+    font-size: 35px;
 }
 h2{
-    font-size: 35px;
+    font-size: 20px;
     
 }
 .faction{
@@ -47,5 +47,8 @@ hr{
     clear: both;
 }
 #defender{
+    clear: both;
+}
+#defender_text{
     clear: both;
 }

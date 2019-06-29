@@ -1,9 +1,6 @@
 $(document).ready();
 //These objects are my four factions, all of thes values are placeholders until I work out the game mechanics
-//var $NCR = $("#NCR");
-//var $BoS = $("#BoS");
-//var $Khans = $("#Khans");
-//var $Legion = $("#Legion");
+
 
 //global variables
 var factions = {
@@ -58,7 +55,7 @@ var renderOne = function (factions, renderArea, factionStatus) {
 
     }
     else if (factionStatus === "defender") {
-        currDefender = faction;
+        currDefender = defender;
         $(facDiv).addClass("target");
     }
 }
@@ -71,7 +68,7 @@ var renderMessage = function (message) {
         gameMessageSet.text("");
     }
 }
-console.log(factions)
+
 var renderFactions = function (charObj, areaRender) {
     if (areaRender === "#stage") {
         $(areaRender).empty();
@@ -115,7 +112,7 @@ var renderFactions = function (charObj, areaRender) {
 
 renderFactions(factions, "#stage");
 
-//This part of the code is where the actual interactivity comes in to play
+//on click listener will allow the user to pick their faction, and push all other factions as enemies
 $(document).on("click", ".faction", function () {
     var name = $(this).attr('data-name');
     console.log(name);
@@ -124,7 +121,6 @@ $(document).on("click", ".faction", function () {
         for (var key in factions) {
             if (key !== name) {
                 enemies.push(factions[key])
-                console.log(enemies);
             }
         }
         $("#stage").hide();
@@ -134,6 +130,7 @@ $(document).on("click", ".faction", function () {
 })
 $("#attack").on("click", function () {
     if ($("#defender").children().length !== 0) {
+        currDefender = $("#defender").children().attr('data-name');//adding this line in, having trouble choosing the defender
         currDefender.HP -= (selectedFaction.attack * turnCounter)
         if (currDefender.HP > 0) {
             renderFactions(currDefender, "playerDamage");
@@ -154,4 +151,4 @@ $("#attack").on("click", function () {
 
 })
 
-//current progress: I'm still having trouble moving the enemies in to the defender area, once they can move it should be easy to get combat working
+//current progress: Needs some work in the attack function -  kills aren't registering, and 'attack' just one shots everything
